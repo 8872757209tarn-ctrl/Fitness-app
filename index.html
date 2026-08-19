@@ -379,7 +379,7 @@ input, select, textarea {
         </h2>
         <div class="flex items-center gap-2">
           <button onclick="event.stopPropagation(); renderExerciseHistory();" class="bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs px-3 py-1.5 rounded-xl font-semibold transition">
-            Refresh Logs 🔄
+            Refresh 
           </button>
           <span class="text-xs text-slate-400 transition-transform group-open:rotate-180">▼</span>
         </div>
@@ -397,7 +397,7 @@ input, select, textarea {
       <h2 class="text-sm font-bold flex items-center gap-1.5">
         <span>⚡</span> WHOOP Recovery Telemetry
       </h2>
-      <button onclick="toggleWhoopModal()" class="text-xs text-sky-400 font-semibold underline py-1">Token Configuration</button>
+      <button onclick="toggleWhoopModal()" class="text-xs text-sky-400 font-semibold underline py-1">Token</button>
     </div>
 
     <div class="grid grid-cols-3 gap-2 text-center mb-3">
@@ -553,7 +553,7 @@ input, select, textarea {
         <span>📏</span> Comprehensive Circumference & Landmark Tracker (cm)
       </h2>
       <button onclick="calculateBodyFat()" class="btn-glow-animated font-bold text-xs px-3.5 py-2 rounded-xl transition">
-        Run Composition AI 🔬
+        Run  🔬
       </button>
     </div>
 
@@ -780,13 +780,13 @@ const workouts = {
 };
 
 const myMeals = [
-  { id: "m1", name: "Meal 1 — Morning Anabolic Complex (Oats 60g, Whey Isolate 30g, Whole Milk 300ml, Almonds 10g, Seeds 15g, Blueberries, Creatine 5g, Collagen 10g)", cals: 680, protein: 52, carbs: 68, fats: 20, calcium: 450, iron: 4.5, potassium: 650, fiber: 11, checked: false },
-  { id: "m2", name: "Meal 2 — Artisanal Cottage Cheese & Spinach Tortilla Wrap (Whole Grain Tortilla, Cottage Cheese 100g, Black Chana, Baby Spinach)", cals: 340, protein: 22, carbs: 42, fats: 8, calcium: 220, iron: 3.8, potassium: 420, fiber: 7, checked: false },
-  { id: "m3", name: "Meal 3 — Micronutrient & Polyphenol Fuel (Crisp Apple & Carrots 100g)", cals: 130, protein: 2, carbs: 32, fats: 0.5, calcium: 40, iron: 0.8, potassium: 480, fiber: 6, checked: false },
-  { id: "m4", name: "Meal 4 — Whole Egg & Roasted Potato Skillet (4 Pasture-Raised Whole Eggs, Yukon Gold Potato 150g, Pure Organic Ghee 15g)", cals: 510, protein: 27, carbs: 30, fats: 30, calcium: 120, iron: 3.5, potassium: 750, fiber: 3, checked: false },
-  { id: "m5", name: "Meal 5 — Probiotic Strained Yogurt Bowl (150g Low-Fat Yogurt with Diced Cucumber)", cals: 100, protein: 7, carbs: 9, fats: 4, calcium: 180, iron: 0.2, potassium: 280, fiber: 1, checked: false },
+  { id: "m1", name: "Meal 1 — Morning (Oats 60g, Whey Isolate 30g, Whole Milk 300ml, Almonds 10g, Seeds 15g, Blueberries, Creatine 5g, Collagen 10g)", cals: 680, protein: 52, carbs: 68, fats: 20, calcium: 450, iron: 4.5, potassium: 650, fiber: 11, checked: false },
+  { id: "m2", name: "Meal 2 — Cottage Cheese & Spinach Tortilla Wrap (Whole Grain Tortilla, Cottage Cheese 100g, Black Chana, Baby Spinach)", cals: 340, protein: 22, carbs: 42, fats: 8, calcium: 220, iron: 3.8, potassium: 420, fiber: 7, checked: false },
+  { id: "m3", name: "Meal 3 — Micronutrient  (Crisp Apple & Carrots 100g)", cals: 130, protein: 2, carbs: 32, fats: 0.5, calcium: 40, iron: 0.8, potassium: 480, fiber: 6, checked: false },
+  { id: "m4", name: "Meal 4 — Whole Egg & Roasted Potato  (4 Pasture-Raised Whole Eggs, Yukon Gold Potato 150g, Pure Organic Ghee 15g)", cals: 510, protein: 27, carbs: 30, fats: 30, calcium: 120, iron: 3.5, potassium: 750, fiber: 3, checked: false },
+  { id: "m5", name: "Meal 5 — Yogurt Bowl (150g Low-Fat Yogurt with Diced Cucumber)", cals: 100, protein: 7, carbs: 9, fats: 4, calcium: 180, iron: 0.2, potassium: 280, fiber: 1, checked: false },
   { id: "m6", name: "Meal 6 — Rapid-Absorbing Protein Roll (Whole Wheat Wrap, 1 Scoop Isolating Whey)", cals: 240, protein: 30, carbs: 22, fats: 3.5, calcium: 150, iron: 1.5, potassium: 210, fiber: 2, checked: false },
-  { id: "m7", name: "Meal 7 — Lean Poultry & Complex Glycogen Re-Supply (Grilled Chicken Breast 250g, Steamed Long Grain Rice 60g raw, Greek Yogurt 100g, Steamed Veggies)", cals: 690, protein: 73, carbs: 54, fats: 11, calcium: 160, iron: 2.8, potassium: 820, fiber: 4, checked: false }
+  { id: "m7", name: "Meal 7 — Lean Poultry (Grilled Chicken Breast 250g, Steamed Long Grain Rice 60g raw, Greek Yogurt 100g, Steamed Veggies)", cals: 690, protein: 73, carbs: 54, fats: 11, calcium: 160, iron: 2.8, potassium: 820, fiber: 4, checked: false }
 ];
 
 let timerInterval;
