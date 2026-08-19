@@ -379,7 +379,7 @@ input, select, textarea {
         </h2>
         <div class="flex items-center gap-2">
           <button onclick="event.stopPropagation(); renderExerciseHistory();" class="bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs px-3 py-1.5 rounded-xl font-semibold transition">
-            Refresh 
+            Refresh
           </button>
           <span class="text-xs text-slate-400 transition-transform group-open:rotate-180">▼</span>
         </div>
@@ -397,7 +397,7 @@ input, select, textarea {
       <h2 class="text-sm font-bold flex items-center gap-1.5">
         <span>⚡</span> WHOOP Recovery Telemetry
       </h2>
-      <button onclick="toggleWhoopModal()" class="text-xs text-sky-400 font-semibold underline py-1">Token</button>
+      <button onclick="toggleWhoopModal()" class="text-xs text-sky-400 font-semibold underline py-1">Token </button>
     </div>
 
     <div class="grid grid-cols-3 gap-2 text-center mb-3">
@@ -424,13 +424,15 @@ input, select, textarea {
   <!-- Body Weight Logger (Hides in Focus Mode) -->
   <section class="glass-card p-4 rounded-2xl focus-hidden-element">
     <h2 class="text-sm font-bold mb-3 flex items-center gap-1.5">
-      <span>⚖️</span> Body Mass Tracking
+      <span>⚖️</span> Body Mass Tracking & Trends
     </h2>
     <div class="flex gap-2">
-      <input id="input-weight" type="number" step="0.1" placeholder="Body Weight (kg)" class="flex-1 bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none">
+      <input id="input-weight" type="number" step="0.1" placeholder="Body Weight (kg/lbs)" class="flex-1 bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none">
       <button onclick="saveWeight()" class="btn-glow-animated px-4 py-3 rounded-xl text-xs font-bold transition">Log Mass</button>
     </div>
-    <div id="latest-weight-log" class="mt-2 text-[11px] text-slate-400">Current baseline: 95 kg (209.4 lbs)</div>
+    <div id="latest-weight-log" class="mt-3 space-y-1 text-[11px] text-slate-400 max-h-32 overflow-y-auto">
+      <!-- Weight history rows render dynamically here -->
+    </div>
   </section>
 </main>
 
@@ -553,7 +555,7 @@ input, select, textarea {
         <span>📏</span> Comprehensive Circumference & Landmark Tracker (cm)
       </h2>
       <button onclick="calculateBodyFat()" class="btn-glow-animated font-bold text-xs px-3.5 py-2 rounded-xl transition">
-        Run  🔬
+        Run 
       </button>
     </div>
 
@@ -780,13 +782,13 @@ const workouts = {
 };
 
 const myMeals = [
-  { id: "m1", name: "Meal 1 — Morning (Oats 60g, Whey Isolate 30g, Whole Milk 300ml, Almonds 10g, Seeds 15g, Blueberries, Creatine 5g, Collagen 10g)", cals: 680, protein: 52, carbs: 68, fats: 20, calcium: 450, iron: 4.5, potassium: 650, fiber: 11, checked: false },
-  { id: "m2", name: "Meal 2 — Cottage Cheese & Spinach Tortilla Wrap (Whole Grain Tortilla, Cottage Cheese 100g, Black Chana, Baby Spinach)", cals: 340, protein: 22, carbs: 42, fats: 8, calcium: 220, iron: 3.8, potassium: 420, fiber: 7, checked: false },
-  { id: "m3", name: "Meal 3 — Micronutrient  (Crisp Apple & Carrots 100g)", cals: 130, protein: 2, carbs: 32, fats: 0.5, calcium: 40, iron: 0.8, potassium: 480, fiber: 6, checked: false },
-  { id: "m4", name: "Meal 4 — Whole Egg & Roasted Potato  (4 Pasture-Raised Whole Eggs, Yukon Gold Potato 150g, Pure Organic Ghee 15g)", cals: 510, protein: 27, carbs: 30, fats: 30, calcium: 120, iron: 3.5, potassium: 750, fiber: 3, checked: false },
-  { id: "m5", name: "Meal 5 — Yogurt Bowl (150g Low-Fat Yogurt with Diced Cucumber)", cals: 100, protein: 7, carbs: 9, fats: 4, calcium: 180, iron: 0.2, potassium: 280, fiber: 1, checked: false },
-  { id: "m6", name: "Meal 6 — Rapid-Absorbing Protein Roll (Whole Wheat Wrap, 1 Scoop Isolating Whey)", cals: 240, protein: 30, carbs: 22, fats: 3.5, calcium: 150, iron: 1.5, potassium: 210, fiber: 2, checked: false },
-  { id: "m7", name: "Meal 7 — Lean Poultry (Grilled Chicken Breast 250g, Steamed Long Grain Rice 60g raw, Greek Yogurt 100g, Steamed Veggies)", cals: 690, protein: 73, carbs: 54, fats: 11, calcium: 160, iron: 2.8, potassium: 820, fiber: 4, checked: false }
+  { id: "m1", name: "Morning  (Oats 60g, Whey Isolate 30g, Whole Milk 300ml, Almonds 10g, Seeds 15g, Blueberries, Creatine 5g, Collagen 10g)", cals: 680, protein: 52, carbs: 68, fats: 20, calcium: 450, iron: 4.5, potassium: 650, fiber: 11, checked: false },
+  { id: "m2", name: "Cottage Cheese & Spinach Tortilla Wrap (Whole Grain Tortilla, Cottage Cheese 100g, Black Chana, Baby Spinach)", cals: 340, protein: 22, carbs: 42, fats: 8, calcium: 220, iron: 3.8, potassium: 420, fiber: 7, checked: false },
+  { id: "m3", name: "Micronutrient  (Crisp Apple & Carrots 100g)", cals: 130, protein: 2, carbs: 32, fats: 0.5, calcium: 40, iron: 0.8, potassium: 480, fiber: 6, checked: false },
+  { id: "m4", name: "Whole Egg & Roasted Potato  (4 Pasture-Raised Whole Eggs, Yukon Gold Potato 150g, Pure Organic Ghee 15g)", cals: 510, protein: 27, carbs: 30, fats: 30, calcium: 120, iron: 3.5, potassium: 750, fiber: 3, checked: false },
+  { id: "m5", name: "Probiotic  Yogurt Bowl (150g Low-Fat Yogurt with Diced Cucumber)", cals: 100, protein: 7, carbs: 9, fats: 4, calcium: 180, iron: 0.2, potassium: 280, fiber: 1, checked: false },
+  { id: "m6", name: "Rapid-Absorbing Protein Roll (Whole Wheat Wrap, 1 Scoop Isolating Whey)", cals: 240, protein: 30, carbs: 22, fats: 3.5, calcium: 150, iron: 1.5, potassium: 210, fiber: 2, checked: false },
+  { id: "m7", name: "Lean Poultry  (Grilled Chicken Breast 250g, Steamed Long Grain Rice 60g raw, Greek Yogurt 100g, Steamed Veggies)", cals: 690, protein: 73, carbs: 54, fats: 11, calcium: 160, iron: 2.8, potassium: 820, fiber: 4, checked: false }
 ];
 
 let timerInterval;
@@ -1093,6 +1095,31 @@ function loadWorkout(dayKey) {
   renderCurrentExerciseCard();
 }
 
+// PROGRESSIVE OVERLOAD UTILITY (Double Progression model)
+function getProgressiveOverloadSuggestion(lastWeight, lastReps, repRangeStr) {
+  // Parse rep range string like "8–12" or "4–6"
+  const parts = repRangeStr.replace('s', '').split(/–|-/);
+  const minRep = parseInt(parts[0]) || 8;
+  const maxRep = parseInt(parts[1]) || 12;
+  
+  const w = parseFloat(lastWeight) || 0;
+  const r = parseInt(lastReps) || 0;
+
+  if (r >= maxRep) {
+    return {
+      weight: w + 2.5,
+      reps: minRep,
+      advice: `Suggestion: +2.5 lbs (Target top of range)`
+    };
+  } else {
+    return {
+      weight: w,
+      reps: r + 1,
+      advice: `Suggestion: +1 rep (Build within range)`
+    };
+  }
+}
+
 function renderCurrentExerciseCard() {
   const container = document.getElementById("exercise-cards-container");
   const exercises = workouts[currentDayKey];
@@ -1101,14 +1128,26 @@ function renderCurrentExerciseCard() {
   let setRowsHtml = "";
 
   for (let s = 1; s <= exercise.sets; s++) {
-    const lastLift = savedHistory[`set_${s}`] ? `${savedHistory[`set_${s}`].weight} lbs × ${savedHistory[`set_${s}`].reps} reps` : "No record";
-    const savedWeight = savedHistory[`set_${s}`]?.weight || "";
-    const savedReps = savedHistory[`set_${s}`]?.reps || "";
+    const lastSetData = savedHistory[`set_${s}`];
+    let lastLift = "No record";
+    let suggestionText = "";
+
+    if (lastSetData) {
+      lastLift = `${lastSetData.weight} lbs × ${lastSetData.reps} reps`;
+      const suggestion = getProgressiveOverloadSuggestion(lastSetData.weight, lastSetData.reps, exercise.reps);
+      suggestionText = `<span class="block text-[9px] text-emerald-400 font-semibold mt-0.5">${suggestion.advice}</span>`;
+    }
+
+    const savedWeight = lastSetData?.weight || "";
+    const savedReps = lastSetData?.reps || "";
 
     setRowsHtml += `
       <tr class="border-b border-slate-800/60">
         <td class="py-3 font-bold text-xs">Set ${s}</td>
-        <td class="py-3 text-[10px] text-slate-400">${lastLift}</td>
+        <td class="py-3 text-[10px] text-slate-400">
+          ${lastLift}
+          ${suggestionText}
+        </td>
         <td class="py-3"><input id="weight_${exercise.id}_${s}" type="number" value="${savedWeight}" placeholder="lbs" class="w-16 bg-slate-900 border border-slate-800 rounded-lg p-2 text-xs text-white focus:outline-none"></td>
         <td class="py-3"><input id="reps_${exercise.id}_${s}" type="number" value="${savedReps}" placeholder="${exercise.reps}" class="w-14 bg-slate-900 border border-slate-800 rounded-lg p-2 text-xs text-white focus:outline-none"></td>
         <td class="py-3 text-right">
@@ -1157,7 +1196,7 @@ function renderCurrentExerciseCard() {
           <thead>
             <tr class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-800">
               <th class="pb-2">Set</th>
-              <th class="pb-2">Previous Target</th>
+              <th class="pb-2">Previous Performance & Progression</th>
               <th class="pb-2">lbs</th>
               <th class="pb-2">Reps</th>
               <th class="pb-2 text-right">Action</th>
@@ -1284,19 +1323,57 @@ function calculateBodyFat() {
   }
 }
 
+// MULTIPLE WEIGHT LOG HISTORY REFACTOR
 function saveWeight() {
   const w = document.getElementById("input-weight").value;
   if (w) {
-    localStorage.setItem("user_weight", JSON.stringify({ weight: w, date: new Date().toLocaleDateString() }));
+    const storageKey = "weight_history_array";
+    const existingData = localStorage.getItem(storageKey);
+    const weightHistory = existingData ? JSON.parse(existingData) : [];
+
+    const newEntry = {
+      weight: w,
+      timestamp: new Date().toISOString(),
+      dateFormatted: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+
+    weightHistory.push(newEntry);
+    localStorage.setItem(storageKey, JSON.stringify(weightHistory));
+    
+    document.getElementById("input-weight").value = "";
     renderWeight();
   }
 }
 
 function renderWeight() {
-  const saved = JSON.parse(localStorage.getItem("user_weight"));
-  if (saved) {
-    document.getElementById("latest-weight-log").innerText = `Latest Recorded Mass: ${saved.weight} kg (${saved.date})`;
+  const storageKey = "weight_history_array";
+  const existingData = localStorage.getItem(storageKey);
+  const container = document.getElementById("latest-weight-log");
+  
+  if (!existingData) {
+    container.innerHTML = `<span class="text-slate-500 italic">No recorded weight history found.</span>`;
+    return;
   }
+
+  const weightHistory = JSON.parse(existingData);
+  if (weightHistory.length === 0) {
+    container.innerHTML = `<span class="text-slate-500 italic">No recorded weight history found.</span>`;
+    return;
+  }
+
+  // Sort descending to show latest entries on top
+  const sortedHistory = [...weightHistory].reverse();
+  const latest = sortedHistory[0];
+
+  let html = `<strong class="text-sky-400 block mb-1">Latest Mass: ${latest.weight} kg (${latest.dateFormatted})</strong>`;
+  html += `<div class="mt-2 space-y-1 border-t border-slate-800 pt-2">`;
+  
+  sortedHistory.slice(0, 5).forEach(entry => {
+    html += `<div class="flex justify-between text-[10px] text-slate-400"><span>${entry.dateFormatted}</span><span class="text-white font-mono">${entry.weight} kg</span></div>`;
+  });
+  
+  html += `</div>`;
+  container.innerHTML = html;
 }
 
 function toggleWhoopModal() {
