@@ -344,10 +344,10 @@ input, select, textarea {
       <label class="block text-[10px] font-bold text-sky-400 uppercase tracking-wider mb-1">Training Block Phase</label>
       <select id="day-select" onchange="loadWorkout(this.value)" class="w-full bg-slate-900 border border-sky-500/80 text-sky-300 font-bold text-sm rounded-xl p-3.5 focus:outline-none">
         <option value="day1">Phase I — Push (Chest/Delts/Triceps)</option>
-        <option value="day2">Phase II — Pull  (Lat/Rhomboids/Biceps)</option>
-        <option value="day3">Phase III — Lower Body  (Quads/Hamstrings/Calves)</option>
-        <option value="day4">Phase IV — Upper Body  </option>
-        <option value="day5">Phase V — Posterior Chain & Core </option>
+        <option value="day2">Phase II — Pull (Lat/Rhomboids/Biceps)</option>
+        <option value="day3">Phase III — Lower Body (Quads/Hamstrings/Calves)</option>
+        <option value="day4">Phase IV — Upper Body Tension Optimization</option>
+        <option value="day5">Phase V — Posterior Chain & Dynamic Core </option>
       </select>
     </div>
 
@@ -361,7 +361,12 @@ input, select, textarea {
         <h2 class="text-sm font-bold flex items-center gap-1.5">
           <span>📅</span> Logged Training Sessions (Net Hours)
         </h2>
-        <span class="text-xs text-slate-400 transition-transform group-open:rotate-180">▼</span>
+        <div class="flex items-center gap-2">
+          <button onclick="event.stopPropagation(); clearAllSessionLogs();" class="bg-red-950/60 hover:bg-red-900 text-red-300 text-xs px-2.5 py-1.5 rounded-xl font-semibold transition border border-red-800/50">
+            Clear
+          </button>
+          <span class="text-xs text-slate-400 transition-transform group-open:rotate-180">▼</span>
+        </div>
       </summary>
       <div class="mt-3">
         <p class="text-[11px] text-slate-400 mb-3">Recorded logs showing total time, rest time subtracted, and actual net hours trained.</p>
@@ -378,6 +383,9 @@ input, select, textarea {
           <span>📊</span> Complete Exercise Performance History
         </h2>
         <div class="flex items-center gap-2">
+          <button onclick="event.stopPropagation(); clearAllExerciseHistory();" class="bg-red-950/60 hover:bg-red-900 text-red-300 text-xs px-2.5 py-1.5 rounded-xl font-semibold transition border border-red-800/50">
+            Clear
+          </button>
           <button onclick="event.stopPropagation(); renderExerciseHistory();" class="bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs px-3 py-1.5 rounded-xl font-semibold transition">
             Refresh
           </button>
@@ -456,15 +464,15 @@ input, select, textarea {
         <span id="total-cals" class="text-lg font-black text-amber-400">0 kcal</span>
       </div>
       <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
-        <span class="block text-[9px] uppercase font-bold text-slate-400">Protein Substrate</span>
+        <span class="block text-[9px] uppercase font-bold text-slate-400">Protein</span>
         <span id="total-protein" class="text-lg font-black text-emerald-400">0 g</span>
       </div>
       <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
-        <span class="block text-[9px] uppercase font-bold text-slate-400">Glycogen Carbs</span>
+        <span class="block text-[9px] uppercase font-bold text-slate-400">Carbs</span>
         <span id="total-carbs" class="text-lg font-black text-sky-400">0 g</span>
       </div>
       <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
-        <span class="block text-[9px] uppercase font-bold text-slate-400">Essential Lipids</span>
+        <span class="block text-[9px] uppercase font-bold text-slate-400">Fats</span>
         <span id="total-fats" class="text-lg font-black text-indigo-400">0 g</span>
       </div>
     </div>
@@ -513,7 +521,7 @@ input, select, textarea {
   <section class="glass-card p-4 rounded-2xl">
     <div class="flex justify-between items-center mb-3">
       <h2 class="text-base font-bold text-sky-400 flex items-center gap-1.5">
-        <span>📐</span> Athlete Anthropometrics & Advanced Body Composition
+        <span>📐</span>  Body Composition
       </h2>
       <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded font-bold border border-sky-800/50">
         Baseline: 6'1" (185 cm) | 95 kg
@@ -552,7 +560,7 @@ input, select, textarea {
   <section class="glass-card p-4 rounded-2xl">
     <div class="flex justify-between items-center mb-3">
       <h2 class="text-sm font-bold flex items-center gap-1.5">
-        <span>📏</span> Comprehensive Circumference & Landmark Tracker (cm)
+        <span>📏</span>  Circumference Tracker (cm)
       </h2>
       <button onclick="calculateBodyFat()" class="btn-glow-animated font-bold text-xs px-3.5 py-2 rounded-xl transition">
         Run 
@@ -563,8 +571,8 @@ input, select, textarea {
       <table class="w-full text-left text-xs">
         <thead>
           <tr class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-800">
-            <th class="pb-2">Anatomical Region</th>
-            <th class="pb-2">Measurement Landmark</th>
+            <th class="pb-2">Region</th>
+            <th class="pb-2">Measurement</th>
             <th class="pb-2 w-28">Current (cm)</th>
             <th class="pb-2 w-28">Target (cm)</th>
           </tr>
@@ -899,7 +907,7 @@ function renderSessionLogs() {
     return;
   }
   
-  history.forEach(item => {
+  history.forEach((item, index) => {
     const totalMins = Math.floor(item.totalTimeSecs / 60);
     const restMins = Math.floor(item.restTimeSecs / 60);
     const netMins = Math.floor(item.netTimeSecs / 60);
@@ -911,13 +919,32 @@ function renderSessionLogs() {
         <span class="font-bold text-sky-400 block">${item.date}</span>
         <span class="text-[10px] text-slate-400">Total: ${totalMins}m | Rest: ${restMins}m</span>
       </div>
-      <div class="text-right">
-        <span class="text-emerald-400 font-black text-sm block">${item.netHours} hrs</span>
-        <span class="text-[9px] text-slate-500 uppercase font-bold">Actual Trained</span>
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <span class="text-emerald-400 font-black text-sm block">${item.netHours} hrs</span>
+          <span class="text-[9px] text-slate-500 uppercase font-bold">Actual Trained</span>
+        </div>
+        <button onclick="deleteSingleSessionLog(${index})" class="text-slate-500 hover:text-red-400 p-1.5 transition" title="Delete Log">
+          🗑️
+        </button>
       </div>
     `;
     container.appendChild(div);
   });
+}
+
+function deleteSingleSessionLog(index) {
+  const history = JSON.parse(localStorage.getItem("training_session_logs")) || [];
+  history.splice(index, 1);
+  localStorage.setItem("training_session_logs", JSON.stringify(history));
+  renderSessionLogs();
+}
+
+function clearAllSessionLogs() {
+  if (confirm("Are you sure you want to clear all logged training sessions?")) {
+    localStorage.removeItem("training_session_logs");
+    renderSessionLogs();
+  }
 }
 
 function hrsMinsFormat(totalSecs) {
@@ -1043,6 +1070,26 @@ function saveSetData(exId, setNum) {
   }
 }
 
+function deleteExerciseHistory(exId) {
+  if (confirm("Are you sure you want to delete performance history for this exercise?")) {
+    localStorage.removeItem(`history_${exId}`);
+    renderExerciseHistory();
+    loadWorkout(currentDayKey);
+  }
+}
+
+function clearAllExerciseHistory() {
+  if (confirm("Are you sure you want to clear complete exercise performance history across all exercises?")) {
+    Object.keys(workouts).forEach(dayKey => {
+      workouts[dayKey].forEach(ex => {
+        localStorage.removeItem(`history_${ex.id}`);
+      });
+    });
+    renderExerciseHistory();
+    loadWorkout(currentDayKey);
+  }
+}
+
 function renderExerciseHistory() {
   const container = document.getElementById("global-exercise-history-container");
   container.innerHTML = "";
@@ -1067,7 +1114,10 @@ function renderExerciseHistory() {
         card.innerHTML = `
           <div class="flex justify-between items-center mb-1.5">
             <h4 class="font-bold text-xs text-emerald-400">${ex.name}</h4>
-            <span class="text-[9px] uppercase font-semibold text-slate-500 bg-slate-950 px-2 py-0.5 rounded">${dayKey.toUpperCase()}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] uppercase font-semibold text-slate-500 bg-slate-950 px-2 py-0.5 rounded">${dayKey.toUpperCase()}</span>
+              <button onclick="deleteExerciseHistory('${ex.id}')" class="text-slate-500 hover:text-red-400 text-xs px-1.5 py-0.5 transition" title="Delete Exercise History">🗑️</button>
+            </div>
           </div>
           <div class="flex flex-wrap gap-1 mt-1">${setsSummary}</div>
         `;
@@ -1196,7 +1246,7 @@ function renderCurrentExerciseCard() {
           <thead>
             <tr class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-800">
               <th class="pb-2">Set</th>
-              <th class="pb-2">Previous & Progression</th>
+              <th class="pb-2">Previous  & Progression</th>
               <th class="pb-2">lbs</th>
               <th class="pb-2">Reps</th>
               <th class="pb-2 text-right">Action</th>
