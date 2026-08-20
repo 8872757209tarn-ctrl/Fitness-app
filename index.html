@@ -94,169 +94,121 @@ input, select, textarea {
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 0.3; }
-  100% { transform: scale(0.95); opacity: 0.8; }
+  0% { transform: scale(0.98); opacity: 0.9; }
+  50% { transform: scale(1.02); opacity: 0.4; }
+  100% { transform: scale(0.98); opacity: 0.9; }
 }
 .timer-pulse {
   animation: pulse-ring 2s infinite ease-in-out;
 }
 
-@keyframes sphere-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* GYM THEMED DUMBBELL & CARBON FIBER TIMER STYLES */
+.gym-bg-overlay {
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%),
+              repeating-linear-gradient(45deg, #0b0f17 0, #0b0f17 10px, #070a0f 10px, #070a0f 20px);
 }
 
-@keyframes sphere-float {
-  0% { transform: translateY(0px); filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6)); }
-  50% { transform: translateY(-8px); filter: drop-shadow(0 25px 35px rgba(56, 189, 248, 0.25)); }
-  100% { transform: translateY(0px); filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6)); }
-}
-
-.sphere-wrapper {
+.dumbbell-container {
   position: relative;
-  width: 210px;
-  height: 210px;
+  width: 100%;
+  max-width: 380px;
+  height: 190px;
   margin: 1.5rem auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  animation: sphere-float 4s infinite ease-in-out;
 }
 
-.sphere-orb {
+/* Dumbbell Outer Iron Plates */
+.db-plate-left, .db-plate-right {
   position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, 
-    rgba(255, 255, 255, 0.35) 0%, 
-    rgba(255, 255, 255, 0.08) 25%, 
-    rgba(56, 189, 248, 0.05) 50%, 
-    rgba(15, 23, 42, 0.85) 90%, 
-    rgba(2, 6, 23, 0.98) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 
-    inset 0 12px 20px rgba(255, 255, 255, 0.4),
-    inset 0 -12px 25px rgba(0, 0, 0, 0.9),
-    inset -8px 0 15px rgba(0, 0, 0, 0.6),
-    inset 8px 0 15px rgba(255, 255, 255, 0.15),
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 0 25px rgba(56, 189, 248, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.6s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 150px;
+  background: linear-gradient(180deg, #334155 0%, #0f172a 40%, #020617 80%, #1e293b 100%);
+  border: 2px solid #475569;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 10px rgba(255,255,255,0.1);
+  z-index: 2;
 }
 
-.sphere-orb::before {
-  content: '';
+.db-plate-left { left: 10px; }
+.db-plate-right { right: 10px; }
+
+.db-plate-left::after, .db-plate-right::after {
+  content: '45 LB';
   position: absolute;
-  top: 7%;
-  left: 14%;
-  width: 50%;
-  height: 28%;
-  border-radius: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
-  transform: rotate(-25deg);
-  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  font-size: 10px;
+  font-weight: 900;
+  color: #64748b;
+  letter-spacing: 2px;
 }
 
-.sphere-orb::after {
-  content: '';
+/* Inner Dumbbell Collar / Secondary Weight */
+.db-inner-left, .db-inner-right {
   position: absolute;
-  bottom: 8%;
-  right: 18%;
-  width: 35%;
-  height: 12%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
-  transform: rotate(-15deg);
-  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 120px;
+  background: linear-gradient(180deg, #1e293b 0%, #020617 100%);
+  border: 1px solid #334155;
+  border-radius: 5px;
+  z-index: 1;
 }
 
-.sphere-ring {
+.db-inner-left { left: 45px; }
+.db-inner-right { right: 45px; }
+
+/* Steel Knurled Handle */
+.db-handle {
   position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(56, 189, 248, 0.25);
-  border-top-color: rgba(255, 255, 255, 0.6);
-  border-bottom-color: rgba(56, 189, 248, 0.1);
-  animation: sphere-spin 10s linear infinite;
-  transition: all 0.6s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 60px;
+  right: 60px;
+  height: 28px;
+  background: repeating-linear-gradient(90deg, #cbd5e1 0px, #94a3b8 2px, #475569 4px);
+  border-top: 2px solid #f8fafc;
+  border-bottom: 2px solid #334155;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  z-index: 0;
 }
 
-.sphere-core {
-  position: absolute;
-  inset: 22px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.22) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 80%);
-  filter: blur(8px);
-  pointer-events: none;
-  transition: all 0.6s ease;
+/* Center HUD Display Inside the Dumbbell */
+.db-hud {
+  position: relative;
+  z-index: 5;
+  width: 210px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.98) 100%);
+  border: 2px solid #38bdf8;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.3), inset 0 0 15px rgba(56, 189, 248, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
 }
 
-.sphere-orb.caution {
-  background: radial-gradient(circle at 32% 28%, 
-    rgba(255, 255, 255, 0.38) 0%, 
-    rgba(255, 255, 255, 0.09) 25%, 
-    rgba(251, 191, 36, 0.08) 50%, 
-    rgba(15, 23, 42, 0.88) 90%, 
-    rgba(2, 6, 23, 0.98) 100%);
-  border-color: rgba(251, 191, 36, 0.3);
-  box-shadow: 
-    inset 0 12px 20px rgba(255, 255, 255, 0.4),
-    inset 0 -12px 25px rgba(0, 0, 0, 0.9),
-    0 0 25px rgba(245, 158, 11, 0.2);
-}
-.sphere-orb.caution::after {
-  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
-}
-.sphere-ring.caution {
-  border-color: rgba(245, 158, 11, 0.3);
-  border-top-color: rgba(255, 255, 255, 0.7);
+.db-hud.caution {
+  border-color: #f59e0b;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.4), inset 0 0 15px rgba(245, 158, 11, 0.2);
 }
 
-.sphere-orb.warning {
-  background: radial-gradient(circle at 32% 28%, 
-    rgba(255, 255, 255, 0.4) 0%, 
-    rgba(255, 255, 255, 0.1) 25%, 
-    rgba(248, 113, 113, 0.08) 50%, 
-    rgba(15, 23, 42, 0.88) 90%, 
-    rgba(2, 6, 23, 0.98) 100%);
-  border-color: rgba(248, 113, 113, 0.3);
-  box-shadow: 
-    inset 0 12px 20px rgba(255, 255, 255, 0.4),
-    inset 0 -12px 25px rgba(0, 0, 0, 0.9),
-    0 0 30px rgba(239, 68, 68, 0.25);
-}
-.sphere-orb.warning::after {
-  background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.4) 0%, rgba(0, 0, 0, 0) 80%);
-}
-.sphere-ring.warning {
-  border-color: rgba(239, 68, 68, 0.3);
-  border-top-color: rgba(255, 255, 255, 0.8);
-  animation-duration: 3s;
+.db-hud.warning {
+  border-color: #ef4444;
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.5), inset 0 0 20px rgba(239, 68, 68, 0.25);
 }
 
-.sphere-orb.complete {
-  background: radial-gradient(circle at 32% 28%, 
-    rgba(255, 255, 255, 0.45) 0%, 
-    rgba(255, 255, 255, 0.12) 25%, 
-    rgba(52, 211, 153, 0.1) 50%, 
-    rgba(15, 23, 42, 0.88) 90%, 
-    rgba(2, 6, 23, 0.98) 100%);
-  border-color: rgba(52, 211, 153, 0.4);
-  box-shadow: 
-    inset 0 12px 22px rgba(255, 255, 255, 0.5),
-    inset 0 -12px 25px rgba(0, 0, 0, 0.9),
-    0 0 35px rgba(16, 185, 129, 0.3);
-}
-.sphere-orb.complete::after {
-  background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.45) 0%, rgba(0, 0, 0, 0) 80%);
-}
-.sphere-ring.complete {
-  border-color: rgba(16, 185, 129, 0.4);
-  border-top-color: rgba(255, 255, 255, 0.85);
+.db-hud.complete {
+  border-color: #10b981;
+  box-shadow: 0 0 35px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
 /* Smooth Focus Mode Transitions */
@@ -521,17 +473,17 @@ input, select, textarea {
   <section class="glass-card p-4 rounded-2xl">
     <div class="flex justify-between items-center mb-3">
       <h2 class="text-base font-bold text-sky-400 flex items-center gap-1.5">
-        <span>📐</span>  Body Composition
+        <span>📐</span> Body Composition
       </h2>
       <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded font-bold border border-sky-800/50">
-        Baseline: 6'1" (185 cm) | 95 kg
+        Baseline: 6'1" (185 cm) | 97 kg
       </span>
     </div>
    
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center mb-4">
       <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
         <span class="block text-[9px] uppercase font-bold text-slate-400">BMI</span>
-        <span class="text-lg font-black text-sky-400">27.7</span>
+        <span class="text-lg font-black text-sky-400">28.3</span>
         <span class="block text-[8px] text-slate-500">kg/m²</span>
       </div>
       <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
@@ -560,7 +512,7 @@ input, select, textarea {
   <section class="glass-card p-4 rounded-2xl">
     <div class="flex justify-between items-center mb-3">
       <h2 class="text-sm font-bold flex items-center gap-1.5">
-        <span>📏</span>  Circumference Tracker (cm)
+        <span>📏</span> Circumference Tracker (cm)
       </h2>
       <button onclick="calculateBodyFat()" class="btn-glow-animated font-bold text-xs px-3.5 py-2 rounded-xl transition">
         Run 
@@ -626,39 +578,40 @@ input, select, textarea {
   </section>
 </main>
 
-<!-- Fullscreen Rest Timer Modal with REALISTIC GLASS 3D SPHERE -->
-<div id="fullscreen-timer-modal" class="fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-50 hidden flex flex-col justify-center items-center p-6 text-center">
+<!-- Fullscreen Rest Timer Modal with REALISTIC 3D DUMBBELL DISPLAY HUB -->
+<div id="fullscreen-timer-modal" class="fixed inset-0 gym-bg-overlay z-50 hidden flex flex-col justify-center items-center p-6 text-center">
   <div class="absolute top-6 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold uppercase tracking-widest timer-pulse">
-    ⚡ Inter-Set Recovery Phase
+    🏋️ Inter-Set Muscle Recovery
   </div>
 
-  <p id="timer-exercise-name" class="text-slate-300 text-xs font-semibold mb-2 tracking-wide uppercase px-4 mt-8"></p>
+  <p id="timer-exercise-name" class="text-slate-300 text-xs font-bold mb-2 tracking-wide uppercase px-4 mt-8"></p>
   
-  <div class="sphere-wrapper">
-    <div id="sphere-ring-elem" class="sphere-ring"></div>
-    <div id="sphere-orb-elem" class="sphere-orb"></div>
-    <div id="sphere-core-elem" class="sphere-core"></div>
-    <div id="fullscreen-timer-display" class="relative z-10 font-mono text-5xl font-black text-white tracking-tight drop-shadow-md">00:00</div>
+  <!-- 3D GYM DUMBBELL CONTAINER -->
+  <div class="dumbbell-container">
+    <div class="db-plate-left"></div>
+    <div class="db-inner-left"></div>
+    <div class="db-handle"></div>
+    
+    <!-- DUMBBELL DIGITAL TIMER HUD -->
+    <div id="db-hud-elem" class="db-hud">
+      <span class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 mb-1">Rest Remaining</span>
+      <div id="fullscreen-timer-display" class="font-mono text-5xl font-black text-white tracking-tight drop-shadow-md">00:00</div>
+    </div>
+    
+    <div class="db-inner-right"></div>
+    <div class="db-plate-right"></div>
   </div>
 
-  <div class="flex items-center gap-3 my-2 bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl">
-    <button onclick="toggleAudioFeedback()" id="btn-toggle-audio" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 transition">
-      🔊 Audio: On
-    </button>
-    <button onclick="toggleHapticFeedback()" id="btn-toggle-haptic" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 transition">
-      📳 Haptics: On
-    </button>
-  </div>
-
-  <div class="flex items-center gap-2 my-3">
-    <button onclick="adjustTimer(-30)" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition">-30s</button>
-    <button onclick="adjustTimer(-15)" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition">-15s</button>
-    <button onclick="adjustTimer(15)" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition">+15s</button>
-    <button onclick="adjustTimer(30)" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition">+30s</button>
+  <!-- Adjustment Quick Controls -->
+  <div class="flex items-center gap-2 my-4">
+    <button onclick="adjustTimer(-30)" class="bg-slate-900/90 border border-slate-700 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md">-30s</button>
+    <button onclick="adjustTimer(-15)" class="bg-slate-900/90 border border-slate-700 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md">-15s</button>
+    <button onclick="adjustTimer(15)" class="bg-slate-900/90 border border-slate-700 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md">+15s</button>
+    <button onclick="adjustTimer(30)" class="bg-slate-900/90 border border-slate-700 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md">+30s</button>
   </div>
 
   <div class="flex flex-col sm:flex-row gap-3 w-full max-w-xs mt-2">
-    <button onclick="closeFullscreenTimer()" class="flex-1 bg-red-600/80 hover:bg-red-500 text-white font-bold py-4 rounded-2xl text-xs tracking-wider uppercase transition shadow-lg shadow-red-900/20">
+    <button onclick="closeFullscreenTimer()" class="flex-1 bg-red-600 hover:bg-red-500 text-white font-bold py-4 rounded-2xl text-xs tracking-wider uppercase transition shadow-lg shadow-red-950/40">
       Dismiss Timer
     </button>
   </div>
@@ -677,32 +630,11 @@ input, select, textarea {
 </div>
 
 <script>
-let isAudioEnabled = true;
-let isHapticEnabled = true;
-
-function toggleAudioFeedback() {
-  isAudioEnabled = !isAudioEnabled;
-  const btn = document.getElementById("btn-toggle-audio");
-  if (isAudioEnabled) {
-    btn.innerText = "🔊 Audio: On";
-    btn.className = "text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 transition";
-  } else {
-    btn.innerText = "0️⃣ Audio: Off";
-    btn.className = "text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 flex items-center gap-1 transition";
-  }
-}
-
-function toggleHapticFeedback() {
-  isHapticEnabled = !isHapticEnabled;
-  const btn = document.getElementById("btn-toggle-haptic");
-  if (isHapticEnabled) {
-    btn.innerText = "📳 Haptics: On";
-    btn.className = "text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 transition";
-  } else {
-    btn.innerText = "🔕 Haptics: Off";
-    btn.className = "text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 flex items-center gap-1 transition";
-  }
-}
+// Web Worker Fallback to keep timers ticking uninterrupted even when mobile browser backgrounding occurs
+const workerBlob = new Blob([`
+  setInterval(() => { postMessage('tick'); }, 500);
+`], { type: 'application/javascript' });
+const timerWorker = new Worker(URL.createObjectURL(workerBlob));
 
 function switchTab(tab) {
   const workoutSec = document.getElementById("section-workout");
@@ -790,56 +722,80 @@ const workouts = {
 };
 
 const myMeals = [
-  { id: "m1", name: "Morning  (Oats 60g, Whey Isolate 30g, Whole Milk 300ml, Almonds 10g, Seeds 15g, Blueberries, Creatine 5g, Collagen 10g)", cals: 680, protein: 52, carbs: 68, fats: 20, calcium: 450, iron: 4.5, potassium: 650, fiber: 11, checked: false },
-  { id: "m2", name: "Cottage Cheese & Spinach Tortilla Wrap (Whole Grain Tortilla, Cottage Cheese 100g, Black Chana, Baby Spinach)", cals: 340, protein: 22, carbs: 42, fats: 8, calcium: 220, iron: 3.8, potassium: 420, fiber: 7, checked: false },
-  { id: "m3", name: "Micronutrient  (Crisp Apple & Carrots 100g)", cals: 130, protein: 2, carbs: 32, fats: 0.5, calcium: 40, iron: 0.8, potassium: 480, fiber: 6, checked: false },
-  { id: "m4", name: "Whole Egg & Roasted Potato  (4 Pasture-Raised Whole Eggs, Yukon Gold Potato 150g, Pure Organic Ghee 15g)", cals: 510, protein: 27, carbs: 30, fats: 30, calcium: 120, iron: 3.5, potassium: 750, fiber: 3, checked: false },
-  { id: "m5", name: "Probiotic  Yogurt Bowl (150g Low-Fat Yogurt with Diced Cucumber)", cals: 100, protein: 7, carbs: 9, fats: 4, calcium: 180, iron: 0.2, potassium: 280, fiber: 1, checked: false },
-  { id: "m6", name: "Rapid-Absorbing Protein Roll (Whole Wheat Wrap, 1 Scoop Isolating Whey)", cals: 240, protein: 30, carbs: 22, fats: 3.5, calcium: 150, iron: 1.5, potassium: 210, fiber: 2, checked: false },
-  { id: "m7", name: "Lean Poultry  (Grilled Chicken Breast 250g, Steamed Long Grain Rice 60g raw, Greek Yogurt 100g, Steamed Veggies)", cals: 690, protein: 73, carbs: 54, fats: 11, calcium: 160, iron: 2.8, potassium: 820, fiber: 4, checked: false }
+  { id: "m1", name: "Morning Overnight Oats (Oats 60g, Whey Isolate 30g, Whole Milk 300ml, Almonds 10g, Chia/Pumpkin Seeds 15g, Blueberries, Dark Choc, Creatine 5g)", cals: 680, protein: 52, carbs: 68, fats: 20, calcium: 450, iron: 4.5, potassium: 650, fiber: 11, checked: false },
+  { id: "m2", name: "Tofu & Spinach Tortilla Wrap (Whole Grain Wrap, Tofu 100g, Baby Spinach)", cals: 340, protein: 22, carbs: 42, fats: 8, calcium: 220, iron: 3.8, potassium: 420, fiber: 7, checked: false },
+  { id: "m3", name: "Greek Yogurt Bowl (150g Low-Fat Greek Yogurt)", cals: 100, protein: 15, carbs: 6, fats: 2, calcium: 180, iron: 0.2, potassium: 280, fiber: 0, checked: false },
+  { id: "m4", name: "Whole Egg & Roasted Potato (4 Eggs, Yukon Gold Potato 150g, Ghee 15g)", cals: 510, protein: 27, carbs: 30, fats: 30, calcium: 120, iron: 3.5, potassium: 750, fiber: 3, checked: false },
+  { id: "m5", name: "Lean Poultry (Grilled Chicken Breast 200g, Steamed Rice, Avocado)", cals: 690, protein: 65, carbs: 54, fats: 18, calcium: 160, iron: 2.8, potassium: 820, fiber: 5, checked: false }
 ];
 
-let timerInterval;
+// TIMESTAMP-BASED TIMERS
 let timeRemaining = 0;
 let initialTime = 0;
+let restTimerTargetTime = 0;
+let restTimerActive = false;
+
 let macroChart;
 let currentExerciseIndex = 0;
 let currentDayKey = "day1";
 
-let sessionInterval;
 let sessionSeconds = 0;
 let sessionRestSeconds = 0;
 let sessionRunning = false;
+let sessionStartTime = 0;
+let accumulatedSessionSeconds = 0;
+
+// Universal Timer Tick Handler via Web Worker
+timerWorker.onmessage = function() {
+  const now = Date.now();
+
+  // 1. Process Main Session Timer
+  if (sessionRunning) {
+    sessionSeconds = Math.floor((now - sessionStartTime) / 1000) + accumulatedSessionSeconds;
+    updateSessionDisplay();
+  }
+
+  // 2. Process Rest Timer Modal
+  if (restTimerActive) {
+    const diff = Math.ceil((restTimerTargetTime - now) / 1000);
+    timeRemaining = Math.max(0, diff);
+    updateTimerDisplay();
+
+    if (timeRemaining <= 0) {
+      restTimerActive = false;
+      const display = document.getElementById("fullscreen-timer-display");
+      display.innerText = "LIFT!";
+      display.className = "font-mono text-5xl font-black text-emerald-300 tracking-tight drop-shadow-md";
+      
+      const hud = document.getElementById("db-hud-elem");
+      hud.className = "db-hud complete";
+    }
+  }
+};
 
 function toggleSessionTimer() {
   const btn = document.getElementById("session-toggle-btn");
   if (!sessionRunning) {
     sessionRunning = true;
+    sessionStartTime = Date.now();
     btn.innerText = "Pause Session";
     btn.className = "bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-lg shadow-amber-950/25";
     
-    // Enable Focus Mode (Hide distracting UI elements smoothly)
     document.body.classList.add("focus-mode-active");
-
-    sessionInterval = setInterval(() => {
-      sessionSeconds++;
-      updateSessionDisplay();
-    }, 1000);
   } else {
     sessionRunning = false;
-    clearInterval(sessionInterval);
+    accumulatedSessionSeconds = sessionSeconds;
     btn.innerText = "Resume Session ";
     btn.className = "bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-lg shadow-emerald-950/25";
     
-    // Disable Focus Mode (Bring UI elements back when paused)
     document.body.classList.remove("focus-mode-active");
   }
 }
 
 function resetSessionTimer() {
   sessionRunning = false;
-  clearInterval(sessionInterval);
   sessionSeconds = 0;
+  accumulatedSessionSeconds = 0;
   sessionRestSeconds = 0;
   updateSessionDisplay();
   document.body.classList.remove("focus-mode-active");
@@ -870,12 +826,9 @@ function endAndLogSession() {
   }
   
   sessionRunning = false;
-  clearInterval(sessionInterval);
   document.body.classList.remove("focus-mode-active");
   
   const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  const totalHoursStr = (sessionSeconds / 3600).toFixed(2);
-  const restHoursStr = (sessionRestSeconds / 3600).toFixed(2);
   const netSecs = Math.max(0, sessionSeconds - sessionRestSeconds);
   const netHoursStr = (netSecs / 3600).toFixed(2);
   
@@ -910,7 +863,6 @@ function renderSessionLogs() {
   history.forEach((item, index) => {
     const totalMins = Math.floor(item.totalTimeSecs / 60);
     const restMins = Math.floor(item.restTimeSecs / 60);
-    const netMins = Math.floor(item.netTimeSecs / 60);
     
     const div = document.createElement("div");
     div.className = "bg-slate-900 border border-slate-800 p-3 rounded-xl flex justify-between items-center text-xs";
@@ -947,78 +899,25 @@ function clearAllSessionLogs() {
   }
 }
 
-function hrsMinsFormat(totalSecs) {
-  const h = Math.floor(totalSecs / 3600);
-  const m = Math.floor((totalSecs % 3600) / 60);
-  if (h > 0) return `${h}h ${m}m`;
-  return `${m} mins`;
-}
-
-function playCompletionChime() {
-  if (isAudioEnabled) {
-    try {
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc1 = audioCtx.createOscillator();
-      const gain1 = audioCtx.createGain();
-      osc1.type = 'sine';
-      osc1.frequency.value = 659.25;
-      gain1.gain.setValueAtTime(0.4, audioCtx.currentTime);
-      gain1.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
-      osc1.connect(gain1);
-      gain1.connect(audioCtx.destination);
-      osc1.start(audioCtx.currentTime);
-      osc1.stop(audioCtx.currentTime + 0.4);
-    } catch (e) {
-      console.log("Audio blocked", e);
-    }
-  }
-  
-  if (isHapticEnabled && "vibrate" in navigator) {
-    navigator.vibrate([200, 100, 200, 100, 400]);
-  }
-}
-
 function startFullscreenTimer(seconds, exerciseName) {
-  clearInterval(timerInterval);
   timeRemaining = seconds;
   initialTime = seconds;
+  restTimerTargetTime = Date.now() + (seconds * 1000);
+  restTimerActive = true;
 
   document.getElementById("timer-exercise-name").innerText = `Resting after: ${exerciseName}`;
   const modal = document.getElementById("fullscreen-timer-modal");
   modal.classList.remove("hidden");
 
-  const orb = document.getElementById("sphere-orb-elem");
-  const ring = document.getElementById("sphere-ring-elem");
-  orb.className = "sphere-orb";
-  ring.className = "sphere-ring";
+  const hud = document.getElementById("db-hud-elem");
+  hud.className = "db-hud";
 
   updateTimerDisplay();
-
-  timerInterval = setInterval(() => {
-    timeRemaining--;
-    sessionRestSeconds++;
-    updateSessionDisplay();
-    updateTimerDisplay();
-
-    if (timeRemaining <= 0) {
-      clearInterval(timerInterval);
-      const display = document.getElementById("fullscreen-timer-display");
-      display.innerText = "GO!";
-      display.className = "relative z-10 font-mono text-5xl font-black text-emerald-300 tracking-tight drop-shadow-md";
-      
-      orb.className = "sphere-orb complete";
-      ring.className = "sphere-ring complete";
-      
-      playCompletionChime();
-    }
-  }, 1000);
 }
 
 function updateTimerDisplay() {
   const display = document.getElementById("fullscreen-timer-display");
-  const orb = document.getElementById("sphere-orb-elem");
-  const ring = document.getElementById("sphere-ring-elem");
-  const core = document.getElementById("sphere-core-elem");
+  const hud = document.getElementById("db-hud-elem");
 
   if (timeRemaining > 0) {
     const mins = String(Math.floor(timeRemaining / 60)).padStart(2, '0');
@@ -1026,34 +925,30 @@ function updateTimerDisplay() {
     display.innerText = `${mins}:${secs}`;
 
     const ratio = Math.max(0, timeRemaining / (initialTime || 1));
-    core.style.transform = `scale(${0.3 + ratio * 0.7})`;
-    core.style.opacity = `${0.2 + ratio * 0.8}`;
 
     if (timeRemaining <= 15) {
-      display.className = "relative z-10 font-mono text-5xl font-black text-red-400 tracking-tight drop-shadow-md";
-      orb.className = "sphere-orb warning";
-      ring.className = "sphere-ring warning";
+      display.className = "font-mono text-5xl font-black text-red-400 tracking-tight drop-shadow-md";
+      hud.className = "db-hud warning";
     } else if (ratio <= 0.5 || timeRemaining <= 30) {
-      display.className = "relative z-10 font-mono text-5xl font-black text-amber-300 tracking-tight drop-shadow-md";
-      orb.className = "sphere-orb caution";
-      ring.className = "sphere-ring caution";
+      display.className = "font-mono text-5xl font-black text-amber-300 tracking-tight drop-shadow-md";
+      hud.className = "db-hud caution";
     } else {
-      display.className = "relative z-10 font-mono text-5xl font-black text-sky-300 tracking-tight drop-shadow-md";
-      orb.className = "sphere-orb";
-      ring.className = "sphere-ring";
+      display.className = "font-mono text-5xl font-black text-sky-300 tracking-tight drop-shadow-md";
+      hud.className = "db-hud";
     }
   }
 }
 
 function adjustTimer(amount) {
-  timeRemaining += amount;
-  if (timeRemaining < 0) timeRemaining = 0;
+  restTimerTargetTime += (amount * 1000);
+  const now = Date.now();
+  timeRemaining = Math.max(0, Math.ceil((restTimerTargetTime - now) / 1000));
   if (timeRemaining > initialTime) initialTime = timeRemaining;
   updateTimerDisplay();
 }
 
 function closeFullscreenTimer() {
-  clearInterval(timerInterval);
+  restTimerActive = false;
   document.getElementById("fullscreen-timer-modal").classList.add("hidden");
 }
 
@@ -1065,7 +960,8 @@ function saveSetData(exId, setNum) {
     const history = JSON.parse(localStorage.getItem(`history_${exId}`)) || {};
     history[`set_${setNum}`] = { weight, reps, date: new Date().toLocaleDateString() };
     localStorage.setItem(`history_${exId}`, JSON.stringify(history));
-    loadWorkout(currentDayKey);
+    
+    renderCurrentExerciseCard();
     renderExerciseHistory();
   }
 }
@@ -1074,7 +970,7 @@ function deleteExerciseHistory(exId) {
   if (confirm("Are you sure you want to delete performance history for this exercise?")) {
     localStorage.removeItem(`history_${exId}`);
     renderExerciseHistory();
-    loadWorkout(currentDayKey);
+    renderCurrentExerciseCard();
   }
 }
 
@@ -1086,7 +982,7 @@ function clearAllExerciseHistory() {
       });
     });
     renderExerciseHistory();
-    loadWorkout(currentDayKey);
+    renderCurrentExerciseCard();
   }
 }
 
@@ -1145,9 +1041,7 @@ function loadWorkout(dayKey) {
   renderCurrentExerciseCard();
 }
 
-// PROGRESSIVE OVERLOAD UTILITY (Double Progression model)
 function getProgressiveOverloadSuggestion(lastWeight, lastReps, repRangeStr) {
-  // Parse rep range string like "8–12" or "4–6"
   const parts = repRangeStr.replace('s', '').split(/–|-/);
   const minRep = parseInt(parts[0]) || 8;
   const maxRep = parseInt(parts[1]) || 12;
@@ -1246,7 +1140,7 @@ function renderCurrentExerciseCard() {
           <thead>
             <tr class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-800">
               <th class="pb-2">Set</th>
-              <th class="pb-2">Previous  & Progression</th>
+              <th class="pb-2">Previous & Progression</th>
               <th class="pb-2">lbs</th>
               <th class="pb-2">Reps</th>
               <th class="pb-2 text-right">Action</th>
@@ -1344,7 +1238,7 @@ function calculateBodyFat() {
   const waist = parseFloat(document.getElementById("measure_waist").value);
   const hips = parseFloat(document.getElementById("measure_hips").value) || 0;
   const height = 185; 
-  const weight = 95; 
+  const weight = 97; 
 
   if (neck && waist && waist > neck) {
     const bodyFat = (86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76).toFixed(1);
@@ -1373,7 +1267,6 @@ function calculateBodyFat() {
   }
 }
 
-// MULTIPLE WEIGHT LOG HISTORY REFACTOR
 function saveWeight() {
   const w = document.getElementById("input-weight").value;
   if (w) {
@@ -1411,7 +1304,6 @@ function renderWeight() {
     return;
   }
 
-  // Sort descending to show latest entries on top
   const sortedHistory = [...weightHistory].reverse();
   const latest = sortedHistory[0];
 
